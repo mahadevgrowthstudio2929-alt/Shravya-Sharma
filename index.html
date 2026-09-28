@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0a0508" />
+  <title>Shravya Sharma | Cricket Insights</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --rgb: 232, 121, 164;      /* main pink */
+      --light: #f9d3e3;
+      --main: #e879a4;
+      --deep: #a8336a;
+      --accent: #f2a9c6;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #0a0508; }
+    body { font-family: "DM Sans", sans-serif; color: #fff; }
+
+    .page {
+      width: 100%; height: 100svh; min-height: 560px; max-height: 900px;
+      display: flex; justify-content: center; align-items: center;
+      padding: 14px; position: relative; overflow: hidden;
+      background:
+        radial-gradient(circle at 50% -10%, rgba(var(--rgb), .24), transparent 38%),
+        radial-gradient(circle at 100% 65%, rgba(168, 51, 106, .16), transparent 32%),
+        #0a0508;
+    }
+    .glow {
+      position: absolute; width: 270px; height: 270px; border-radius: 50%;
+      background: rgba(var(--rgb), .14); filter: blur(70px);
+      top: 12%; left: 50%; transform: translateX(-50%);
+      animation: breathe 5s ease-in-out infinite; pointer-events: none;
+    }
+    @keyframes breathe {
+      0%, 100% { opacity: .45; transform: translateX(-50%) scale(.95); }
+      50% { opacity: .8; transform: translateX(-50%) scale(1.08); }
+    }
+
+    .card {
+      position: relative; width: 100%; max-width: 430px;
+      height: calc(100svh - 28px); max-height: 875px;
+      border: 1px solid rgba(var(--rgb), .3); border-radius: 28px;
+      background: linear-gradient(145deg, rgba(255,255,255,.075), rgba(255,255,255,.025) 45%, rgba(var(--rgb), .05));
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 30px 80px rgba(0,0,0,.65), inset 0 1px 0 rgba(255,255,255,.08), 0 0 45px rgba(var(--rgb), .1);
+      overflow: hidden; display: flex; flex-direction: column;
+      padding: 20px 18px 15px;
+      animation: cardIn .8s cubic-bezier(.22,.8,.3,1) both;
+    }
+
+    .line {
+      position: absolute; height: 1px; width: 110px;
+      background: linear-gradient(90deg, transparent, var(--main), transparent); opacity: .5;
+    }
+    .line.one { top: 70px; left: -30px; transform: rotate(-35deg); }
+    .line.two { bottom: 125px; right: -35px; transform: rotate(-35deg); }
+
+    .header { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2; }
+    .brand-small {
+      display: flex; align-items: center; gap: 8px; font-size: 10px;
+      letter-spacing: 2.2px; text-transform: uppercase; color: rgba(255,255,255,.6); font-weight: 600;
+    }
+    .brand-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--main); box-shadow: 0 0 12px rgba(var(--rgb), .9); }
+    .live {
+      display: flex; align-items: center; gap: 6px;
+      border: 1px solid rgba(var(--rgb), .3); background: rgba(var(--rgb), .09);
+      padding: 6px 9px; border-radius: 30px; font-size: 9px;
+      text-transform: uppercase; letter-spacing: 1.2px; color: var(--light);
+    }
+    .live-dot { width: 6px; height: 6px; border-radius: 50%; background: #7ee08a; box-shadow: 0 0 9px rgba(126,224,138,.9); animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .35; transform: scale(.65); } }
+
+    .hero {
+      text-align: center; position: relative; z-index: 2; flex: 1;
+      display: flex; flex-direction: column; justify-content: center; min-height: 0; padding: 8px 0;
+    }
+    .logo-wrap {
+      width: 82px; height: 82px; margin: 0 auto 13px; padding: 3px; border-radius: 50%;
+      background: linear-gradient(145deg, #f9d3e3, var(--deep), var(--main));
+      box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 0 32px rgba(var(--rgb), .3);
+      animation: logoFloat 4s ease-in-out infinite;
+    }
+    @keyframes logoFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+    .logo-wrap img { width: 100%; height: 100%; display: block; object-fit: cover; border-radius: 50%; background: #111; }
+
+    .eyebrow { font-size: 9px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); font-weight: 700; margin-bottom: 5px; }
+    h1 {
+      font-family: "Playfair Display", serif; font-size: clamp(32px, 9vw, 43px);
+      line-height: 1; font-weight: 600; letter-spacing: -.7px;
+      background: linear-gradient(110deg, #fff 15%, var(--light) 45%, var(--main) 80%);
+      -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 8px;
+    }
+    .subtitle { max-width: 310px; margin: 0 auto; color: rgba(255,255,255,.6); font-size: 11px; line-height: 1.55; }
+
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; margin: 17px 0 13px; }
+    .stat {
+      min-width: 0; padding: 10px 5px 9px; border-radius: 13px;
+      border: 1px solid rgba(var(--rgb), .14); background: rgba(255,255,255,.035);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.035);
+    }
+    .stat-number { font-size: 17px; font-weight: 700; color: var(--light); line-height: 1.1; }
+    .stat-label { margin-top: 4px; font-size: 7.5px; letter-spacing: .8px; text-transform: uppercase; color: rgba(255,255,255,.45); }
+
+    .ticker {
+      width: 100%; border: 1px solid rgba(var(--rgb), .2); background: rgba(var(--rgb), .06);
+      border-radius: 12px; padding: 8px 10px; display: flex; align-items: center; gap: 8px;
+      margin-bottom: 13px; overflow: hidden;
+    }
+    .ticker-icon { font-size: 11px; color: var(--main); }
+    .ticker-text { white-space: nowrap; font-size: 8.5px; letter-spacing: .45px; color: rgba(255,255,255,.6); animation: tickerMove 9s linear infinite; }
+    @keyframes tickerMove { 0% { transform: translateX(5%); } 100% { transform: translateX(-35%); } }
+
+    .cta {
+      position: relative; display: flex; align-items: center; justify-content: center;
+      width: 100%; height: 52px; border-radius: 15px; text-decoration: none; overflow: hidden;
+      background: linear-gradient(110deg, var(--deep), var(--main), #c4467f);
+      color: #fff; font-size: 12px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
+      box-shadow: 0 10px 30px rgba(var(--rgb), .3), inset 0 1px 0 rgba(255,255,255,.45);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .cta::before {
+      content: ""; position: absolute; top: 0; left: -80%; width: 55%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.5), transparent);
+      transform: skewX(-20deg); animation: shine 3.8s infinite;
+    }
+    @keyframes shine { 0% { left: -80%; } 45%, 100% { left: 130%; } }
+    .cta:active { transform: scale(.97); box-shadow: 0 5px 18px rgba(var(--rgb), .25); }
+    .cta-content { position: relative; z-index: 2; display: flex; align-items: center; gap: 9px; }
+    .telegram-icon {
+      width: 21px; height: 21px; border-radius: 50%; background: rgba(255,255,255,.2);
+      display: flex; align-items: center; justify-content: center; font-size: 11px;
+    }
+
+    .footer { text-align: center; margin-top: 10px; color: rgba(255,255,255,.3); font-size: 7px; line-height: 1.45; letter-spacing: .25px; }
+    .footer strong { color: rgba(255,255,255,.45); font-weight: 600; }
+
+    .hero > * { animation: contentIn .7s ease both; }
+    .logo-wrap { animation: logoFloat 4s ease-in-out infinite, contentIn .7s ease .12s both; }
+    .eyebrow { animation-delay: .2s; }
+    h1 { animation-delay: .27s; }
+    .subtitle { animation-delay: .34s; }
+    .stats { animation-delay: .41s; }
+    .ticker { animation-delay: .48s; }
+    .cta { animation-delay: .55s; }
+
+    @keyframes cardIn { from { opacity: 0; transform: scale(.96) translateY(15px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+    @keyframes contentIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-height: 650px) {
+      .card { padding: 14px 15px 11px; border-radius: 23px; }
+      .logo-wrap { width: 65px; height: 65px; margin-bottom: 8px; }
+      h1 { font-size: 31px; }
+      .stats { margin: 11px 0 9px; }
+      .ticker { margin-bottom: 9px; padding: 7px 9px; }
+      .cta { height: 46px; }
+      .footer { margin-top: 7px; font-size: 6.5px; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <div class="glow"></div>
+
+    <section class="card">
+      <div class="line one"></div>
+      <div class="line two"></div>
+
+      <header class="header">
+        <div class="brand-small">
+          <span class="brand-dot"></span>
+          Cricket Insights
+        </div>
+        <div class="live">
+          <span class="live-dot"></span>
+          Live Updates
+        </div>
+      </header>
+
+      <div class="hero">
+        <div class="logo-wrap">
+          <img src="logo.png" alt="Shravya Sharma Logo">
+        </div>
+
+        <div class="eyebrow">The Cricket Desk</div>
+        <h1>Shravya Sharma</h1>
+
+        <p class="subtitle">
+          Sharp Cricket analysis, match insights &amp; carefully researched
+          Cricket updates — all in one place.
+        </p>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-number">98%</div>
+            <div class="stat-label">Trust Score</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Updates</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">10K+</div>
+            <div class="stat-label">Community</div>
+          </div>
+        </div>
+
+        <div class="ticker">
+          <span class="ticker-icon">◆</span>
+          <span class="ticker-text">
+            LIVE • Cricket insights are being updated regularly • Stay informed •
+            Follow the latest match analysis •
+          </span>
+        </div>
+
+        <a class="cta" href="https://t.me/+CZ-H2x-ROEk0ZDM1" target="_blank" rel="noopener noreferrer">
+          <span class="cta-content">
+            <span class="telegram-icon">➤</span>
+            <span>Join Shravya Sharma</span>
+          </span>
+        </a>
+      </div>
+
+      <div class="footer">
+        <strong>Disclaimer:</strong>
+        Content is provided for informational and educational purposes only.
+        No guarantee of accuracy, outcome or financial gain is made.
+        Please make independent decisions and use your own judgment.
+      </div>
+    </section>
+  </main>
+</body>
+</html>
